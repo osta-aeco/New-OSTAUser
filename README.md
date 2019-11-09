@@ -20,33 +20,33 @@ This PowerShell script is designed to simplify and automate user creation for OS
 
 Import this function into your PowerShell `$Profile` (either by `dot-sourcing` or calling `. ./New-OSTAUser.ps1` or by pasting the function into your `$Profile` directly).
 
-### How it works
+## How it works
 
 This script is designed to work with PowerShell and PowerShell Core. 
 
-#### AzureAD check
+### AzureAD check
 
 > This code section is only valid for PowerShell desktop users. It will *not* run for Cloud Shell users.
 
 Checks to see whether the AzureAD PowerShell module is installed and current. If not, the script attempts to retrieve and install the module before importing it.
 
-#### Data integrity
+### Data integrity
 
 This section ensures that all values passed through the mandatory parameters are free of leading and trailing spaces, and that all text is in title case.
 
-#### Password generation
+### Password generation
 
 Due to limitations with PowerShell Core, we need to use two different password-generation mechanisms depending on whether the user is running Windows PowerShell or PowerShell Core.
 
-##### Windows PowerShell users
+#### Windows PowerShell users
 
 This section calls `[System.Web.Security.Membership]` to securely generate a random password with 8 characters, 2 of which are non-alphanumeric.
 
-##### PowerShell Core users
+#### PowerShell Core users
 
 This section randomly generates a password using `Get-Random`.
 
-#### User creation
+### User creation
 
 This section creates the AzureAD account using the inputs specified by the user and assigns it to the correct AzureAD group to provision licenses.
 

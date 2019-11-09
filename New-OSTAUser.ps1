@@ -114,7 +114,6 @@ function New-OSTAUser {
 		}
 
 		<# Confirm user inputs #>
-
 		Write-Information -MessageData "WAIT! Confirm that the following information is correct before proceeding."
 		$InformationOrder = "FirstName", "LastName", "Title", "OSTADomain", "Department", "LicenseType"
 		$Information = @(	@{ 'FirstName' = $FirstName }

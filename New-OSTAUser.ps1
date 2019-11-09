@@ -9,7 +9,7 @@ function New-OSTAUser {
 		[Parameter(Mandatory=$True)]
 		[string] $LastName,
 		[Parameter(Mandatory=$True)]
-		[ValidateSet('Executive Council','Board of Directors','General Assembly')]
+		[ValidateSet('ExecutiveCouncil','BoardDirectors','GeneralAssembly')]
 		[string] $Department,
 		[Parameter(Mandatory=$True)]
 		[string] $Title,
@@ -80,6 +80,14 @@ function New-OSTAUser {
 	$DisplayName = $LastName + ", " + $FirstName
 	$MailNickName = $FirstName + "." + $LastName
 
+	if ($Department -eq "ExecutiveCouncil") {
+		$Department = "Executive Council"
+		} elseif ( $Department -eq "BoardDirectors") {
+			$Department = "Board of Directors"
+			} elseif ( $Department -eq "GeneralAssembly" ) {
+				$Department = "General Assembly"
+			}
+
 	<# Generate a random password. Uses System.Web AssemblyType if PSVersion != Core, otherwise uses alternate password generation #>
 	Write-Information -MessageData "INFO: Randomly generating a password."
 
@@ -107,6 +115,8 @@ function New-OSTAUser {
 
 		$PasswordProfile.Password = ($four + $theRest -join '') | Sort-Object {Get-Random}
 	}
+
+	<# Confirm user inputs #>
 
 	Write-Information -MessageData "WAIT! Confirm that the following information is correct before proceeding."
 	$InformationOrder = "FirstName", "LastName", "Title", "OSTADomain", "Department", "LicenseType"

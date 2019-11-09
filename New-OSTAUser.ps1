@@ -123,7 +123,7 @@ function New-OSTAUser {
 	if ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
 
 		<# Create user account and get its ObjectId #>
-		$Information = "INFO: Creating AzureAD account for " + $OSTAUser
+		$Information = "INFO: Creating AzureAD account " + $OSTAUser
 		Write-Information -MessageData $Information
 		New-AzureADUser -AccountEnabled $True -UserPrincipalName $OSTAUser -MailNickName $MailNickname -DisplayName $DisplayName -UsageLocation CA -GivenName $FirstName -Surname $LastName -Department $Department -PasswordProfile $PasswordProfile -Verbose
 

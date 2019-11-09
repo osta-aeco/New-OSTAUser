@@ -1,7 +1,7 @@
 <# Create-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #> 
 
 function New-OSTAUser {
-	[CmdletBinding(SupportsShouldProcess, ConfirmImpact='Medium')]
+	[CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
 	Param (
 	    [string] $OSTADomain = "@osta-aeco.org",
 		[Parameter(Mandatory=$True)]
@@ -17,6 +17,10 @@ function New-OSTAUser {
 		[ValidateSet('Base','Enhanced')]
 		[string] $LicenseType
 	)
+
+	<# Change user's $InformationPreference for this session #>
+	$UserInfoPref = $InformationPreference
+	$InformationPreference = "Continue"
 
 	<# Check for Azure Cloud Shell and PS Core #>
 	if ($PSVersionTable.OS -Like '*Linux*') {
@@ -35,7 +39,7 @@ function New-OSTAUser {
 
 	<# AzureAD PS Module. This section checks to see whether the AzureAD module is installed and current. If the module doesn't exist or isn't current, the module will be installed. #>
 	if ($CloudShell -eq $False) {
-		Write-Host "INFO: Checking whether AzureAD module is installed." -ForegroundColor White -BackgroundColor Black
+		Write-Information -MessageData "INFO: Checking whether AzureAD module is installed."
 		$AzureADVersionCheck = [int](Get-Module -Name AzureAD).Version.Major
 
 		if ($AzureADVersionCheck -lt "2") {
@@ -46,14 +50,14 @@ function New-OSTAUser {
 		$ModuleLoadCheck = Get-Module "AzureAD"
 
 		if ($ModuleLoadCheck -eq $Null) {
-		Write-Host "INFO: Importing AzureAD PowerShell module." -ForegroundColor White -BackgroundColor Black
+		Write-Information -MessageData "INFO: Importing AzureAD PowerShell module."
 		Import-Module AzureAD
 		}
 	}
 
 	<# Check to see if AzureAD is connected. If not, prompt for credentials #>
 	if ($AzureConnection.Account -eq $null) {
-		Write-Host "INFO: Authenticating to AzureAD." -ForegroundColor White -BackgroundColor Black
+		Write-Information -MessageData "INFO: Authenticating to AzureAD."
 		$AzureConnection = Connect-AzureAD
 	}
 
@@ -75,7 +79,7 @@ function New-OSTAUser {
 	$MailNickName = $FirstName + "." + $LastName
 
 	<# Generate a random password. Uses System.Web AssemblyType if PSVersion != Core, otherwise uses alternate password generation #>
-	Write-Host "INFO: Randomly generating a password." -ForegroundColor White -BackgroundColor Black
+	Write-Information -MessageData "INFO: Randomly generating a password."
 
 	$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
 
@@ -106,7 +110,8 @@ function New-OSTAUser {
 	if ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
 
 		<# Create user account and get its ObjectId #>
-		Write-Host "INFO: Creating AzureAD account " $OSTAUser -ForegroundColor White -BackgroundColor Black
+		$Information = "INFO: Creating AzureAD account for " + $OSTAUser
+		Write-Information -MessageData $Information
 		New-AzureADUser -AccountEnabled $True -UserPrincipalName $OSTAUser -MailNickName $MailNickname -DisplayName $DisplayName -UsageLocation CA -GivenName $FirstName -Surname $LastName -Department $Department -PasswordProfile $PasswordProfile -Verbose
 
 		$UserObjectId = (Get-AzureADUser -ObjectId $OSTAUser).ObjectId
@@ -115,12 +120,13 @@ function New-OSTAUser {
 		$BaseLicense = (Get-AzureADGroup -SearchString "Licensing_Office365_Base").ObjectId
 		$EnhancedLicense = (Get-AzureADGroup -SearchString "Licensing_Office365_Enhanced").ObjectId
 
-		Write-Host "Assigning user" $DisplayName "to AzureAD group Licensing_Office365_Base." -ForegroundColor White -BackgroundColor Black
-
 		if ($LicenseType -eq "Base") {
+			$Information = "Assigning user " + $DisplayName + " to AzureAD group Licensing_Office365_Base."
+			Write-Information -MessageData $Information
 			Add-AzureADGroupMember -ObjectId $BaseLicense -RefObjectId $UserObjectId -Verbose
 		} elseif ($LicenseType -eq "Enhanced") {
-			Write-Host "Assigning user" $DisplayName "to AzureAD group Licensing_Office365_Enhanced." -ForegroundColor White -BackgroundColor Black
+			$Information = "Assigning user " + $DisplayName + " to AzureAD group Licensing_Office365_Enhanced."
+			Write-Information -MessageData $Information
 			Add-AzureADGroupMember -ObjectId $EnhancedLicense -RefObjectId $UserObjectId -Verbose
 		}
 
@@ -131,22 +137,19 @@ function New-OSTAUser {
 		}
 
 		<# Output user information #> 
-		Write-Host "User " -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host $OSTAUser -NoNewLine -ForegroundColor Blue -BackgroundColor White
-		Write-Host " has been created for " -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host $DisplayName -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host ". Their temporary password is " -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host $PasswordProfile.Password -NoNewLine -ForegroundColor Blue -BackgroundColor White
-		Write-Host ". Please provide these credentials to the user for sign-in at https://myosta.osta-aeco.org. " -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host $FirstName -NoNewLine -ForegroundColor White -BackgroundColor Blue
-		Write-Host " will be required to change their password when they sign in for the first time." -NoNewLine -ForegroundColor White -BackgroundColor Blue
+		$Information = "An account has been created for " + $DisplayName + ". Please provide these credentials to the user for sign-in at https://myosta.osta-aeco.org. " + $FirstName + " will be required to change their password when they sign in for the first time."
+		Write-Information -MessageData $Information
+		$Information = "Email address: " + $OSTAUser
+		Write-Information -MessageData $Information
+		$Information = "Temporary password: " + $PasswordProfile.Password
+
 		if ($PSCore -eq $False) {
-			Write-Host " "
-			Write-Host " "
-			Write-Host $DisplayName -NoNewLine -ForegroundColor White -BackgroundColor Blue
-			Write-Host "'s credentials have been copied to your system clipboard." -NoNewLine -ForegroundColor White -BackgroundColor Blue
-			Write-Host " "
-			Write-Host " "
+			$Information = $DisplayName + "'s credentials have been copied to your system clipboard."
+			Write-Information -MessageData $Information
 		}
 	}
+
+	<# Revert user's $InformationPreference #>
+	$InformationPreference = $UserInfoPref
+
 }

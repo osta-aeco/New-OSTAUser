@@ -47,7 +47,7 @@ function New-OSTAUser {
 			Install-Module AzureAD
 		}
 
-		$ModuleLoadCheck = Get-Module "AzureAD"
+		$ModuleLoadCheck = (Get-Module "AzureAD").Name
 
 		if ($ModuleLoadCheck -eq $Null) {
 		Write-Information -MessageData "INFO: Importing AzureAD PowerShell module."
@@ -56,9 +56,11 @@ function New-OSTAUser {
 	}
 
 	<# Check to see if AzureAD is connected. If not, prompt for credentials #>
-	if ($AzureConnection.Account -eq $null) {
+	$AzureConnection = [Microsoft.Open.Azure.AD.CommonLibrary.AzureSession]::AccessTokens
+	if ($AzureConnection -eq $null) {
 		Write-Information -MessageData "INFO: Authenticating to AzureAD."
-		$AzureConnection = Connect-AzureAD
+		Connect-AzureAD
+		$AzureConnection = [Microsoft.Open.Azure.AD.CommonLibrary.AzureSession]::AccessTokens
 	}
 
 	<# Ensure inputs are in Title Case and don't have any leading or trailing spaces #>
@@ -106,6 +108,17 @@ function New-OSTAUser {
 		$PasswordProfile.Password = ($four + $theRest -join '') | Sort-Object {Get-Random}
 	}
 
+	Write-Information -MessageData "WAIT! Confirm that the following information is correct before proceeding."
+	$InformationOrder = "FirstName", "LastName", "Title", "OSTADomain", "Department", "LicenseType"
+	$Information = @(	@{ 'FirstName' = $FirstName }
+						@{ 'LastName' = $LastName }
+						@{ 'Title' = $Title }
+						@{ 'OSTADomain' = $OSTADomain }
+						@{ 'Department' = $Department }
+						@{ 'LicenseType' = $LicenseType }
+						) | Sort-Object { $InformationOrder.IndexOf($_.Result) }
+	Write-Information -MessageData $Information
+
 	<# Critical code #>
 	if ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
 
@@ -136,7 +149,7 @@ function New-OSTAUser {
 			Set-Clipboard $Clipboard
 		}
 
-		<# Output user information #> 
+		<# Output user information #>
 		$Information = "An account has been created for " + $DisplayName + ". Please provide these credentials to the user for sign-in at https://myosta.osta-aeco.org. " + $FirstName + " will be required to change their password when they sign in for the first time."
 		Write-Information -MessageData $Information
 		$Information = "Email address: " + $OSTAUser

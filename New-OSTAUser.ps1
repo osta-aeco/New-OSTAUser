@@ -37,20 +37,25 @@ function New-OSTAUser {
 	if ($CloudShell -eq $False) {
 		Write-Host "INFO: Checking whether AzureAD module is installed." -ForegroundColor White -BackgroundColor Black
 		$AzureADVersionCheck = [int](Get-Module -Name AzureAD).Version.Major
-		if ($AzureADVersionCheck -ge "2") {
-			Write-Host "INFO: Importing AzureAD PowerShell module." -ForegroundColor White -BackgroundColor Black
-			Import-Module AzureAD }
-		else {
+
+		if ($AzureADVersionCheck -lt "2") {
 			Write-Warning -Message "AzureAD PowerShell module is not installed. Installing now." -WarningAction Continue
-			Get-Module AzureAD
-			Write-Host "INFO: Importing AzureAD PowerShell module." -ForegroundColor White -BackgroundColor Black
-			Import-Module AzureAD
+			Install-Module AzureAD
+		}
+
+		$ModuleLoadCheck = Get-Module "AzureAD"
+
+		if ($ModuleLoadCheck -eq $Null) {
+		Write-Host "INFO: Importing AzureAD PowerShell module." -ForegroundColor White -BackgroundColor Black
+		Import-Module AzureAD
 		}
 	}
 
-	<# Prompt user for AzureAD credentials #>
-	Write-Host "INFO: Authenticating to AzureAD." -ForegroundColor White -BackgroundColor Black
-	Connect-AzureAD
+	<# Check to see if AzureAD is connected. If not, prompt for credentials #>
+	if ($AzureConnection.Account -eq $null) {
+		Write-Host "INFO: Authenticating to AzureAD." -ForegroundColor White -BackgroundColor Black
+		$AzureConnection = Connect-AzureAD
+	}
 
 	<# Ensure inputs are in Title Case and don't have any leading or trailing spaces #>
 	$TextInfo = (Get-Culture).TextInfo

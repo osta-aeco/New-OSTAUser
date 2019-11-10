@@ -1,4 +1,4 @@
-<# Create-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
+<# New-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
 function New-OSTAUser {
 	[CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]

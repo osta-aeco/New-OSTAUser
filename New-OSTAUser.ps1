@@ -9,10 +9,10 @@ function New-OSTAUser {
 		[Parameter(Mandatory=$True)]
 		[string] $LastName,
 		[Parameter(Mandatory=$True)]
+		[string] $JobTitle,
+		[Parameter(Mandatory=$True)]
 		[ValidateSet('ExecutiveCouncil','BoardDirectors','GeneralAssembly')]
 		[string] $Department,
-		[Parameter(Mandatory=$True)]
-		[string] $Title,
 		[Parameter(Mandatory=$True)]
 		[ValidateSet('Base','Enhanced')]
 		[string] $LicenseType
@@ -72,8 +72,8 @@ function New-OSTAUser {
 	$LastName = $TextInfo.ToTitleCase($LastName)
 	$LastName = $LastName.Trim()
 
-	$Title = $TextInfo.ToTitleCase($Title)
-	$Title = $Title.Trim()
+	$JobTitle = $TextInfo.ToTitleCase($JobTitle)
+	$JobTitle = $JobTitle.Trim()
 
 	<# Set AzureAD Attributes #>
 	$MailNickName = $FirstName.Replace(' ','') + "." + $LastName.Replace(' ','')
@@ -118,7 +118,7 @@ function New-OSTAUser {
 		$InformationOrder = "FirstName", "LastName", "Title", "OSTADomain", "Department", "LicenseType"
 		$Information = @(	@{ 'FirstName' = $FirstName }
 			@{ 'LastName' = $LastName }
-			@{ 'Title' = $Title }
+			@{ 'JobTitle' = $JobTitle }
 			@{ 'OSTADomain' = $OSTADomain }
 			@{ 'Department' = $Department }
 			@{ 'LicenseType' = $LicenseType }

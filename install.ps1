@@ -1,0 +1,1 @@
+Invoke-Command { $ScriptPath = "$Home\Documents\WindowsPowerShell\New-OSTAUser.ps1"; New-Item -Path $ScriptPath -ItemType File -Force; (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/osta-aeco/New-OSTAUser/master/New-OSTAUser.ps1").Content | Out-File -Path $ScriptPath; Add-Content -Path $PROFILE ". $Home\Documents\WindowsPowerShell\New-OSTAUser.ps1"; & $profile }

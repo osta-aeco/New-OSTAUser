@@ -14,8 +14,12 @@ New-OSTAUser
 ## Description
 This PowerShell script is designed to simplify and automate user creation for OSTA-AECO in AzureAD and Office365.
 
-## Usage
-Import this function into your PowerShell `$Profile` (either by `dot-sourcing` or calling `. ./New-OSTAUser.ps1` or by pasting the function into your `$Profile` directly).
+## Installation
+Copy and paste this code into a PowerShell session to install the script.
+
+```powershell
+Invoke-Command { $ScriptPath = "$Home\Documents\WindowsPowerShell\New-OSTAUser.ps1"; New-Item -Path $ScriptPath -ItemType File -Force; (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/osta-aeco/New-OSTAUser/master/New-OSTAUser.ps1").Content | Out-File -Path $ScriptPath; Add-Content -Path $PROFILE ". $Home\Documents\WindowsPowerShell\New-OSTAUser.ps1"; & $profile }
+```
 
 ## How it works
 This script is designed to work with PowerShell and PowerShell Core.

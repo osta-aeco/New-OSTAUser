@@ -49,7 +49,7 @@ function New-OSTAUser {
 		[string] $JobTitle,
 		[Parameter(Mandatory=$True)]
 		[Alias('dept','dt')]
-		[ValidateSet('ExecutiveCouncil','BoardDirectors','GeneralAssembly')]
+		[ValidateSet('ExecutiveCouncil','BoardDirectors','GeneralAssembly','Executive Council','Board of Directors','General Assembly')]
 		[string] $Department,
 		[Parameter(Mandatory=$True)]
 		[Alias('lic','lt','license')]

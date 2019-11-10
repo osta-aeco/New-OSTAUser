@@ -15,11 +15,11 @@ New-OSTAUser
 This PowerShell script is designed to simplify and automate user creation for OSTA-AECO in AzureAD and Office365.
 
 ## Installation
-This version is designed to be compatible with Install-Module and the new GitHub Package Registry (GPR.)
+This version is designed to be compatible with Install-Module and the new GitHub Package Registry (GPR).
 
 Install this module by executing the following:
 ```powershell
-Register-PSRepository -Name "OSTA-AECO" -SourceLocation "https://nuget.pkg.github.com/osta-aeco/index.json" -PublishLocation "https://github.com/osta-aeco" -InstallationPolicy Trusted
+Register-PSRepository -Name "OSTA-AECO" -SourceLocation "https://nuget.pkg.github.com/osta-aeco/index.json" -PublishLocation "https://github.com/osta-aeco" -InstallationPolicy Trusted; Install-Module "New-OSTAUser"
 ```
 
 ## How it works

@@ -6,7 +6,7 @@ New-OSTAUser
 	-FirstName <String[]>
 	-LastName <String[]>
 	-Title <String[]>
-	-Department <String[General Assembly|Executive Council|Board of Directors]>
+	-Department <String[GeneralAssembly|ExecutiveCouncil|BoardDirectors]>
 	-LicenseType <String[Base|Enhanced]>
 	[-OSTADomain <String[]>]
 ```

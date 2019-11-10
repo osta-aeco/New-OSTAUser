@@ -20,6 +20,7 @@ This version is designed to be compatible with Install-Module and the new GitHub
 Install this module by executing the following:
 ```powershell
 Register-PSRepository -Name "OSTA-AECO" -SourceLocation "https://nuget.pkg.github.com/osta-aeco/index.json" -PublishLocation "https://github.com/osta-aeco" -InstallationPolicy Trusted
+Install-Module "New-OSTAUser"
 ```
 
 ## How it works

@@ -1,4 +1,4 @@
-<# Create-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #> 
+<# Create-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
 function New-OSTAUser {
 	[CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
@@ -49,7 +49,7 @@ function New-OSTAUser {
 
 		$ModuleLoadCheck = (Get-Module "AzureAD").Name
 
-		if ($ModuleLoadCheck -eq $Null) {
+		if ($Null -eq $ModuleLoadCheck) {
 			Write-Information -MessageData "INFO: Importing AzureAD PowerShell module."
 			Import-Module AzureAD
 		}
@@ -57,7 +57,7 @@ function New-OSTAUser {
 
 	<# Check to see if AzureAD is connected. If not, prompt for credentials #>
 	$AzureConnection = [Microsoft.Open.Azure.AD.CommonLibrary.AzureSession]::AccessTokens
-	if ($AzureConnection -eq $null) {
+	if ($Null -eq $AzureConnection) {
 		Write-Information -MessageData "INFO: Authenticating to AzureAD."
 		Connect-AzureAD
 		$AzureConnection = [Microsoft.Open.Azure.AD.CommonLibrary.AzureSession]::AccessTokens

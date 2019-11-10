@@ -1,0 +1,242 @@
+<helpItems schema="maml">
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-OSTAUser</command:name>
+      <maml:description>
+        <maml:para>Creates a new AzureAD/Office 365 user for OSTA-AECO.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>New</command:verb>
+      <command:noun>OSTAUser</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The New-OSTAUser creates a new AzureAD/Office 365 user for OSTA-AECO. Compatible with both Windows PowerShell and PowerShell Core.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-OSTAUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>FirstName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the first name of the user object in AzureAD. Will comprise the user's display name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>LastName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the first name of the user object in AzureAD. Will comprise the user's display name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>JobTitle</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's job title in AzureAD.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>Department</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's department in AzureAD.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>LicenseType</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's license type.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>OSTADomain</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user object's domain name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="0">
+        <maml:name>SID</maml:name>
+        <maml:description>
+          <maml:para>Specifies profile owner Security ID (SID).</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue></dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a New-CimSession or Get-CimSession cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue></dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell&#174; calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue></dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>AsJob</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet as a background job. Use this parameter to run commands that take a long time to complete.  The cmdlet immediately returns an object that represents the job and then displays the command prompt. You can continue to work in the session while the job completes.  To manage the job, use the *-Job cmdlets. To get the job results, use the Receive-Job cmdlet.  For more information about Windows PowerShell&#174; background jobs, see about_Jobs.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri/>
+        </dev:type>
+        <dev:defaultValue></dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_UserProfile</maml:name>
+          <maml:uri>http://msdn.microsoft.com/library/ee886409</maml:uri>
+          <maml:description/>
+        </dev:type>
+        <maml:description>
+          <maml:para>User Profile CIM object</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_UserAccount</maml:name>
+          <maml:uri>http://msdn.microsoft.com/library/aa394507</maml:uri>
+          <maml:description/>
+        </dev:type>
+        <maml:description>
+          <maml:para>User Account CIM object</maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Management.Infrastructure.CimInstance#root/cimv2/Win32_SystemAccount</maml:name>
+          <maml:uri>http://msdn.microsoft.com/library/aa394466</maml:uri>
+          <maml:description/>
+        </dev:type>
+        <maml:description>
+          <maml:para>System Account CIM object</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors></command:terminatingErrors>
+    <command:nonTerminatingErrors></command:nonTerminatingErrors>
+    <maml:alertSet>
+      <maml:title></maml:title>
+      <maml:alert>
+        <maml:para>The Microsoft.Management.Infrastructure.CimInstance object is a wrapper class that displays Windows Management Instrumentation (WMI) objects. The path after the pound sign (#) provides the namespace and class name for the underlying WMI object.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------------------  Example 1  --------------------------</maml:title>
+        <maml:introduction>
+          <maml:paragraph>PS C:\&gt;</maml:paragraph>
+        </maml:introduction>
+        <dev:code>Get-UserProfile | Get-ProfileOwner</dev:code>
+        <dev:remarks>
+          <maml:para>Resolves user profile owners into user accounts</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para>
+            Caption                       Domain                        Name                          SID
+            -------                       ------                        ----                          ---
+            PWNOTE\NETWORK SERVICE        PWNOTE                        NETWORK SERVICE               S-1-5-20
+            PWNOTE\SYSTEM                 PWNOTE                        SYSTEM                        S-1-5-18
+            PWNOTE\LOCAL SERVICE          PWNOTE                        LOCAL SERVICE                 S-1-5-19
+            . . .
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+              <maml:para />
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>--------------------------  Example 2  --------------------------</maml:title>
+        <maml:introduction>
+          <maml:paragraph>PS C:\&gt;</maml:paragraph>
+        </maml:introduction>
+        <dev:code>Get-ProfileOwner -SID S-1-5-20</dev:code>
+        <dev:remarks>
+          <maml:para>This example gets user account details using specific SID</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para></maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+              <maml:para />
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>--------------------------  Example 3  --------------------------</maml:title>
+        <maml:introduction>
+          <maml:paragraph>PS C:\&gt;</maml:paragraph>
+        </maml:introduction>
+        <dev:code>
+          Get-Item c:\users\someuser |
+          Select-Object -ExpandProperty FullName |
+          Get-UserProfile |
+          Get-ProfileOwner
+        </dev:code>
+        <dev:remarks>
+          <maml:para>This example takes user profile directory by name and retrieves that profile&#39;s owner details.</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para></maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+              <maml:para />
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Get-UserProfile</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+</helpItems>

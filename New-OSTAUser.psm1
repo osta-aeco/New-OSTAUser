@@ -1,4 +1,4 @@
-<# New-OSTAUser.psm1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
+<# PSModule New-OSTAUser.psm1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
 <#
 .SYNOPSIS

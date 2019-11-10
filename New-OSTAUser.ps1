@@ -1,19 +1,58 @@
 <# New-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
+<#
+.SYNOPSIS
+Creates a new AzureAD/Office 365 user for OSTA-AECO.
+
+.DESCRIPTION
+Creates a new AzureAD/Office 365 user for OSTA-AECO.
+Compatible with both Windows PowerShell and PowerShell Core.
+
+.PARAMETER FirstName
+Specifies the first name of the user object in AzureAD. Will comprise the user's display name.
+
+.PARAMETER LastName
+Specifies the last name of the user object in AzureAD. Will comprise the user's display name.
+
+.PARAMETER JobTitle
+Specifies the user's job title in AzureAD.
+
+.PARAMETER Department
+Specifies the user's department in AzureAD.
+
+.PARAMETER LicenseType
+Specifies the user's license type.
+
+.EXAMPLE
+PS> New-OSTAUser -FirstName John -LastName Doe -JobTitle "Public Affairs Coordinator" -Department ExecutiveCouncil -LicenseType Enhanced
+
+.EXAMPLE
+PS> New-OSTAUser -fn John -ln Doe -t "Public Affairs Coordinator" -dt "ExecutiveCouncil" -lt Enhanced
+
+.LINK
+https://github.com/osta-aeco/New-OSTAUser
+#>
+
 function New-OSTAUser {
-	[CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
+	[CmdletBinding(SupportsShouldProcess=$True, ConfirmImpact='High')]
 	Param (
+		[Alias('domain')]
 		[string] $OSTADomain = "@osta-aeco.org",
 		[Parameter(Mandatory=$True)]
+		[Alias('fn','first')]
 		[string] $FirstName,
 		[Parameter(Mandatory=$True)]
+		[Alias('ln','last')]
 		[string] $LastName,
 		[Parameter(Mandatory=$True)]
+		[Alias('Title','ti','t')]
 		[string] $JobTitle,
 		[Parameter(Mandatory=$True)]
+		[Alias('dept','dt')]
 		[ValidateSet('ExecutiveCouncil','BoardDirectors','GeneralAssembly')]
 		[string] $Department,
 		[Parameter(Mandatory=$True)]
+		[Alias('lic','lt','license')]
 		[ValidateSet('Base','Enhanced')]
 		[string] $LicenseType
 		)

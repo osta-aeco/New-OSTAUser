@@ -1,4 +1,4 @@
-<# New-OSTAUser.ps1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
+<# New-OSTAUser.psm1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
 <#
 .SYNOPSIS
@@ -209,3 +209,5 @@ function New-OSTAUser {
 			<# Revert user's $InformationPreference #>
 			$InformationPreference = $UserInfoPref
 		}
+
+Export-ModuleMember -Function New-OSTAUser

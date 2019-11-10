@@ -57,11 +57,6 @@ function New-OSTAUser {
 		[string] $LicenseType
 		)
 
-	<# AutoUpdater #>
-	$LocalScriptVersion = [decimal] 0.9
-	$RemoteScriptVersionUrl = (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/osta-aeco/New-OSTAUser/master/New-OSTAUser.ps1").Content
-	$RemoteScriptVersion = $RemoteScriptVersionUrl.toString() -Split '\n' | Select-String -Pattern '$LocalScriptVersion'
-
 	<# Change user's $InformationPreference for this session #>
 	$UserInfoPref = $InformationPreference
 	$InformationPreference = "Continue"

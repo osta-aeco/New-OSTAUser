@@ -126,7 +126,7 @@ function New-OSTAUser {
 		Write-Information -MessageData $Information
 
 		<# Critical code #>
-		if ($PSCmdlet.ShouldProcess("ShouldProcess?")) {
+		if ($PSCmdlet.ShouldProcess("$OSTAUser in AzureAD")) {
 
 			<# Create user account and get its ObjectId #>
 			$Information = "INFO: Creating AzureAD account " + $OSTAUser
@@ -167,8 +167,6 @@ function New-OSTAUser {
 					Write-Information -MessageData $Information
 				}
 			}
-
 			<# Revert user's $InformationPreference #>
 			$InformationPreference = $UserInfoPref
-
 		}

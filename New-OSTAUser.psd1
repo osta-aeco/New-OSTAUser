@@ -12,7 +12,7 @@
 RootModule = 'New-OSTAUser.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0-beta'
+ModuleVersion = '0.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

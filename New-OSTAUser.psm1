@@ -1,38 +1,6 @@
 <# New-OSTAUser.psm1 | Arjun Dhanjal (Arjun.Dhanjal@osta-aeco.org) #>
 
-<#
-.SYNOPSIS
-Creates a new AzureAD/Office 365 user for OSTA-AECO.
-
-.DESCRIPTION
-Creates a new AzureAD/Office 365 user for OSTA-AECO.
-Compatible with both Windows PowerShell and PowerShell Core.
-
-.PARAMETER FirstName
-Specifies the first name of the user object in AzureAD. Will comprise the user's display name.
-
-.PARAMETER LastName
-Specifies the last name of the user object in AzureAD. Will comprise the user's display name.
-
-.PARAMETER JobTitle
-Specifies the user's job title in AzureAD.
-
-.PARAMETER Department
-Specifies the user's department in AzureAD.
-
-.PARAMETER LicenseType
-Specifies the user's license type.
-
-.EXAMPLE
-PS> New-OSTAUser -FirstName John -LastName Doe -JobTitle "Public Affairs Coordinator" -Department ExecutiveCouncil -LicenseType Enhanced
-
-.EXAMPLE
-PS> New-OSTAUser -fn John -ln Doe -t "Public Affairs Coordinator" -dt "ExecutiveCouncil" -lt Enhanced
-
-.LINK
-https://github.com/osta-aeco/New-OSTAUser
-#>
-
+# .ExternalHelp New-OSTAUser.psm1-help.xml
 function New-OSTAUser {
 	[CmdletBinding(SupportsShouldProcess=$True, ConfirmImpact='High')]
 	Param (

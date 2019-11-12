@@ -1,0 +1,145 @@
+<helpItems schema="maml">
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-OSTAUser</command:name>
+      <maml:description>
+        <maml:para>Creates a new AzureAD/Office 365 user for OSTA-AECO.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para>(c)2019 OSTA-AECO</maml:para>
+      </maml:copyright>
+      <command:verb>New</command:verb>
+      <command:noun>OSTAUser</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The New-OSTAUser creates a new AzureAD/Office 365 user for OSTA-AECO. Compatible with both Windows PowerShell and PowerShell Core.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-OSTAUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>FirstName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the first name of the user object in AzureAD. Will comprise the user's display name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>LastName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the first name of the user object in AzureAD. Will comprise the user's display name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>JobTitle</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's job title in AzureAD.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>Department</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's department in AzureAD.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>LicenseType</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user's license type.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="0">
+          <maml:name>OSTADomain</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user object's domain name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">System.String</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors></command:terminatingErrors>
+    <command:nonTerminatingErrors></command:nonTerminatingErrors>
+    <maml:alertSet>
+      <maml:title></maml:title>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------------------  Example 1  --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-OSTAUser -FirstName John -LastName Doe -Title "Public Affairs Coordinator" -Department ExecutiveCouncil -LicenseType Enhanced</dev:code>
+        <dev:remarks>
+          <maml:para>This command creates a user for John Doe, Public Affairs Coordinator.</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para>
+          </maml:para>
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText>
+              <maml:para />
+            </command:commandText>
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>GitHub Repository</maml:linkText>
+        <maml:uri>https://github.com/osta-aeco/New-OSTAUser</maml:uri>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+</helpItems>
